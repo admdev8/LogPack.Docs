@@ -15,7 +15,7 @@ LogPack is an internal tool at FeatureNinjas that we use to analyze issues in ou
 
 # Installation
 
-- Download the NuGet package and VS code extension from here: https://gumroad.com/l/RXnSg (we will upload those to nuget.org and the VS Code marketplace later)
+- Download the NuGet package and VS code extension from the Releases in this repository (we will upload those to nuget.org and the VS Code marketplace later) (Subscribe to get updates on new releases)
 - Install the NuGet package in your asp.net core project and add the required configuration into the `Configure()` methods of `Startup.cs`
 
 ``` cs

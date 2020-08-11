@@ -1,6 +1,8 @@
 # LogPack
 
-Welcome to the LogPacks Beta. This repo is used for documentation purposes. Issues are used to track features and bugs until LogPack goes is published as a separate product.
+Welcome to the LogPack Beta. This repo is used for documentation purposes. Issues are used to track features and bugs until LogPack goes is published as a separate product.
+
+![LogPack Explorer](/LogPack%20Explorer.png?raw=true)
 
 # What and Why?
 

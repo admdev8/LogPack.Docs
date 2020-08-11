@@ -18,25 +18,27 @@ LogPack is an internal tool at FeatureNinjas that we use to analyze issues in ou
 - Download the NuGet package and VS code extension from here: https://gumroad.com/l/RXnSg (we will upload those to nuget.org and the VS Code marketplace later)
 - Install the NuGet package in your asp.net core project and add the required configuration into the `Configure()` methods of `Startup.cs`
 
-      // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-      public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-      {
-          // ...
-          app.UseLogPack(new LogPackOptions()
-          {
-              Sinks = new LogPackSink[]
-              {
-                  new FtpSink(
-                      [ftp-server-url], 
-                      [ftp-server-port], 
-                      [ftp-server-username], 
-                      [ftp-server-password], 
-              },
-              ProgramType = typeof(Program)
-          });
-          // ...
-          app.UseRouting();
-      }
+``` cs
+// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    // ...
+    app.UseLogPack(new LogPackOptions()
+    {
+        Sinks = new LogPackSink[]
+        {
+            new FtpSink(
+                [ftp-server-url], 
+                [ftp-server-port], 
+                [ftp-server-username], 
+                [ftp-server-password], 
+        },
+        ProgramType = typeof(Program)
+    });
+    // ...
+    app.UseRouting();
+}
+```
 
 - Install the VS Code extension (install the .vsix file that you downloaded) and configure the same FTP server connection in the LogPack configuration section
 
@@ -44,27 +46,31 @@ LogPack is an internal tool at FeatureNinjas that we use to analyze issues in ou
 
 By default, a log pack is created and uploaded whenever the request responds with a 5xx return code. You can use include filters (even create your own) to change this. For example, to create a log pack for all return code 3xx, 4xx and 5xx, add the following lines to the `LogPackOptions` object (see above)
 
-    Include = new IIncludeFilter[]
-    {
-        new StatusIncludeFilter(0, 1000),
-    },
+``` cs
+Include = new IIncludeFilter[]
+{
+  new StatusIncludeFilter(0, 1000),
+},
+```
     
 In order to create a custom include filter, implement the `IIncludeFilter` interface. Example:
 
-    public class LogPackAccountIdIncludeFilter : IIncludeFilter
-    {
-        public bool Include(HttpContext context)
-        {
-            if (context.Items.ContainsKey("accountId")
-                && (context.Items["accountId"].ToString() == "1234"
-                || context.Items["accountId"].ToString() == "5678"))
-            {
-                return true;
-            }
+``` cs
+public class LogPackAccountIdIncludeFilter : IIncludeFilter
+{
+  public bool Include(HttpContext context)
+  {
+      if (context.Items.ContainsKey("accountId")
+          && (context.Items["accountId"].ToString() == "1234"
+          || context.Items["accountId"].ToString() == "5678"))
+      {
+          return true;
+      }
 
-            return false;
-        }
-    }
+      return false;
+  }
+}
+```
     
 If this include filter is added to the log pack options, then for all requests for the user with the account ID is 1234 or 5678, a log pack is created.
 

@@ -6,14 +6,18 @@ Welcome to the LogPack Beta. This repo is used for documentation purposes. Issue
 
 # What and Why?
 
-LogPack is an internal tool at FeatureNinjas that we use to analyze issues in our server. Other services that provide logging as a service collect all logs and allow you to search and filter using keywords or specific log files. In production however, we would like to collect as less logs as possible to limit the price for the services. Furthermore, we ran into issues where environment variables were not correctly set in the production or staging environment and had issues with different versions of NuGet packages. Analyzing such issues took us a lot of time which is why we came up with the idea of LogPack. Whenever an unexpected issue happens, collect everything related to this issue and store it packaged as a zip file on an FTP server. So no more logs for API calls with return code 200. But literally everything necessary to analyze failed API calls with return code 500.
+Services that provide logging as a service collect all logs and allow you to search and filter using keywords or specific log files. In production however, we would like to collect as less logs as possible to limit the price for the services. Furthermore, we ran into issues where environment variables were not correctly set in the production or staging environment and had issues with different versions of NuGet packages. Analyzing such issues took us a lot of time which is why we came up with the idea of LogPack. Whenever an unexpected issue happens, collect everything related to this issue and store it packaged as a zip file on an FTP server. So no more logs for API calls with return code 200. But literally everything necessary to analyze failed API calls with return code 500.
 
 > Special note: LogPack is a product created while creating FeatureNinjas. We use it to analyze our server issues. If you want to have more infos on FeatureNinjas, a feature flagging service for developers, then check out https://featureninjas.com.
 
+# Open Source
+
+We're planning on open sourcing the core product so that you can push logs to any storage that you want. Currently it is closed source until the core reaches a certain level of maturity. Watch this repo to get notified when we release the code.
+
 # Prerequisites
 
-- LogPack currently only runs in ASP.net core 3.2+. We're looking forward to implement this also for NodeJS and others if requested. 
-- You will need an FTP server to store the log packs
+- LogPack currently only runs in ASP.net core 3.2+. We're looking forward to implement this also for NodeJS and others. 
+- You will need an FTP server to store the log packs. In future, more storage types will be support. Tell us what you need.
 
 # Installation
 
